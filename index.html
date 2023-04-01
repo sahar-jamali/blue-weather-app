@@ -15,22 +15,73 @@
   </head>
   <body>
     <div class="container">
-      <h3>search box</h3>
-      <h1>
-        city name<br />
-        20
-      </h1>
-
-      <div>C <span>F</span></div>
-
-      <div>description</div>
-      <div>Updated as of <span>Friday</span> <span>10:00</span></div>
-      <div>27 <span>september</span> <span>2023</span></div>
-      <ul>
-        <li>Wind</li>
-        <li>Humidity</li>
-        <li>Precipitation</li>
-      </ul>
+      <div class="basicHeader">
+        <span class="forcast">Forcast</span>
+        <form class="search-form" id="search-form">
+          <div class="row">
+            <div class="col-2 searchElements">
+              <input
+                type="submit"
+                value=""
+                class="form-control btn btn-primary shadow-sm"
+                id="searchBtn"
+              />
+              <img
+                src="images/search-icon.png"
+                class="searchIcon"
+                alt="search-icon"
+              />
+            </div>
+            <div class="col-8 searchElements">
+              <input
+                type="search"
+                placeholder="Type a city.."
+                autofocus="on"
+                autocomplete="off"
+                class="form-control shadow-sm"
+                id="search-box"
+              />
+            </div>
+            <div class="col-2 searchElements">
+              <input
+                type="submit"
+                value=""
+                class="form-control btn btn-success shadow-sm"
+                id="currentBtn"
+              />
+              <img
+                src="images/current_location_icon.png"
+                class="locationIcon"
+                alt="location-icon"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="resultBox">
+        <h1>
+          <span id="cityName">Tehran</span>, <span id="countryName">Iran</span>
+        </h1>
+        <div class="row degree">
+          <div class="col-5 emoji-degree">
+            <span class="emoji">☀</span> <span>20</span>°
+          </div>
+          <div class="col-1">
+            <ul class="units">
+              <li>C</li>
+              <li>F</li>
+            </ul>
+          </div>
+        </div>
+        <div class="description">Suny</div>
+        <div>Updated as of <span>Friday</span> <span>10:00</span></div>
+        <div>27 <span>september</span> <span>2023</span></div>
+        <ul>
+          <li>Wind</li>
+          <li>Humidity</li>
+          <li>Precipitation</li>
+        </ul>
+      </div>
     </div>
     <small
       ><a
