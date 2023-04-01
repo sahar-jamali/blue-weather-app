@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -59,43 +60,42 @@
         </form>
       </div>
       <div class="resultBox">
-        <h1>
-          <span id="cityName">Tehran</span>, <span id="countryName">Iran</span>
-        </h1>
+        <h1><span id="cityName"></span>, <span id="countryName"></span></h1>
         <div class="row degree">
           <div class="col-8 emoji-degree">
-            <span class="emoji">☀</span> <span>20</span>°
+            <span class="emoji">☀</span> <span id="show-temp"></span>°
           </div>
           <div class="col-1">
             <ul class="units">
               <li>C</li>
-              <li>F</li>
+              <li><a href="#" target="_blank" class="farenheit">F</a></li>
             </ul>
           </div>
         </div>
-        <div class="description">Suny</div>
+        <div class="description" id="description"></div>
         <div class="dateTime">
-          <div>Updated as of <span>Friday</span> <span>10:00</span></div>
-          <div>27 <span>september</span> <span>2023</span></div>
+          <div>
+            Updated as of <span id="currentDay"></span>
+            <span id="currentTime"></span>
+          </div>
+          <div id="currentDate"></div>
         </div>
         <ul class="detailes">
-          <li class="element">Wind <span class="windSpeed">5</span>km/h</li>
-          <li class="element">
-            Precipitation <span class="precipitation">20</span>mm
-          </li>
-          <li class="element">Humidity <span class="humidity">20</span>%</li>
+          <li class="element">Feels like <span id="feels"></span>°</li>
+          <li class="element">Wind <span id="windSpeed"></span>km/h</li>
+          <li class="element">Humidity <span id="humidity"></span>%</li>
         </ul>
       </div>
       <div class="coder">
         <a
           href="https://github.com/sahar-jamali/blue-weather-app"
           target="_blank"
+          class="coderLink"
           >Open-sorce code</a
         >
         , by Sahar Jamali
       </div>
     </div>
-
     <script src="src/index.js"></script>
   </body>
 </html>

@@ -58,6 +58,7 @@ h1 {
   width: 43px;
 }
 .resultBox {
+  background-color: #102943;
   border: 1px solid #dadde1;
   padding: 15px;
   border-radius: 10px;
@@ -85,6 +86,12 @@ h1 {
   line-height: 1;
   list-style: none;
   padding: 0px;
+}
+.farenheit {
+  text-decoration: none;
+}
+.farenheit:hover {
+  text-decoration: none;
 }
 .description {
   font-size: 32px;
@@ -115,6 +122,6 @@ h1 {
   text-align: left;
   font-size: 14px;
 }
-a {
+.coderLink {
   text-decoration: none;
 }
