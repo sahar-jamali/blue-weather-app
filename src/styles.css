@@ -9,10 +9,11 @@ body {
   color: #ffffff;
 }
 h1 {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 300;
   line-height: 28px;
   margin: 0;
+  margin-top: 10px;
 }
 .basicHeader {
   background-color: #102943;
@@ -72,6 +73,7 @@ h1 {
   font-size: 70px;
   font-weight: lighter;
   padding: 0px;
+  text-align: right;
 }
 .col-1 {
   padding: 26px 0 0 0;
@@ -85,8 +87,34 @@ h1 {
   padding: 0px;
 }
 .description {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 100;
   line-height: 28px;
-  margin: 0;
+  margin-bottom: 20px;
+}
+.dateTime {
+  font-size: 18px;
+  font-weight: 600;
+}
+.detailes {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+.element {
+  display: inline;
+  margin: 0 20px;
+}
+.coder {
+  max-width: 600px;
+  margin: 120px auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: left;
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
 }
