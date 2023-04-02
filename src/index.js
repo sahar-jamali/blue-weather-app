@@ -53,7 +53,6 @@ function showTempature(response) {
   let elementWind = document.querySelector("#windSpeed");
   let elementHumidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#weatherIcon");
-  console.log(iconElement);
 
   city.innerHTML = response.data.name;
   country.innerHTML = response.data.sys.country;
@@ -82,7 +81,7 @@ function searchCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTempature);
 }
-function handleSomthing(event) {
+function handleSubmit(event) {
   event.preventDefault();
   let newCity = document.querySelector("#search-box").value;
   searchCity(newCity);
@@ -99,8 +98,8 @@ function showCurrent(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
 }
-let inputCity = document.querySelector("#searchBtn");
-inputCity.addEventListener("submit", handleSomthing);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 let current = document.querySelector("#currentBtn");
 current.addEventListener("click", showCurrent);
 searchCity("Tehran");
