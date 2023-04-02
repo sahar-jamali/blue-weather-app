@@ -87,12 +87,7 @@ h1 {
   list-style: none;
   padding: 0px;
 }
-.farenheit {
-  text-decoration: none;
-}
-.farenheit:hover {
-  text-decoration: none;
-}
+
 .description {
   font-size: 32px;
   font-weight: 100;
@@ -123,5 +118,18 @@ h1 {
   font-size: 14px;
 }
 .coderLink {
+  text-decoration: none;
+}
+.units .active {
+  color: #ffffff;
+  cursor: default;
+  text-decoration: none;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
+.units .notActive {
+  cursor: default;
   text-decoration: none;
 }

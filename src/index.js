@@ -54,9 +54,10 @@ function showTempature(response) {
   let elementHumidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#weatherIcon");
 
+  celTemp = response.data.main.temp;
   city.innerHTML = response.data.name;
   country.innerHTML = response.data.sys.country;
-  elementTemp.innerHTML = Math.round(response.data.main.temp);
+  elementTemp.innerHTML = Math.round(celTemp);
   elementdescription.innerHTML = response.data.weather[0].main;
   elementFeels.innerHTML = Math.round(response.data.main.feels_like);
   elementWind.innerHTML = Math.round(response.data.wind.speed);
@@ -98,8 +99,33 @@ function showCurrent(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+//cel to far and far to cel
+function changeCelToFar(event) {
+  event.preventDefault();
+  celDegree.classList.remove("active");
+  farDegree.classList.add("active");
+  farDegree.classList.remove("notActive");
+  celDegree.classList.add("notActive");
+  let elementTemp = document.querySelector("#show-temp");
+  let farTemp = (celTemp * 9) / 5 + 32;
+  elementTemp.innerHTML = Math.round(farTemp);
+}
+function changeFarToCel(event) {
+  event.preventDefault();
+  celDegree.classList.add("active");
+  farDegree.classList.remove("active");
+  farDegree.classList.add("notActive");
+  celDegree.classList.remove("notActive");
+  let elementTemp = document.querySelector("#show-temp");
+  elementTemp.innerHTML = Math.round(celTemp);
+}
+let celTemp = null;
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 let current = document.querySelector("#currentBtn");
 current.addEventListener("click", showCurrent);
+let farDegree = document.querySelector("#farenheit");
+farDegree.addEventListener("click", changeCelToFar);
+let celDegree = document.querySelector("#celsius");
+celDegree.addEventListener("click", changeFarToCel);
 searchCity("Tehran");
