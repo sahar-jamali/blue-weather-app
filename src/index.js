@@ -1,7 +1,13 @@
 // display the last updated (current) date and time
 function showTime(date) {
   let min = date.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
   let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
   return `${hour}:${min}`;
 }
 function showDay(date) {
@@ -40,24 +46,21 @@ function showDate(date) {
 //show temprature of city
 function showTempature(response) {
   let city = document.querySelector("#cityName");
-  city.innerHTML = response.data.name;
   let country = document.querySelector("#countryName");
-  country.innerHTML = response.data.sys.country;
-  let temprature = Math.round(response.data.main.temp);
   let elementTemp = document.querySelector("#show-temp");
-  elementTemp.innerHTML = `${temprature}`;
-  let description = response.data.weather[0].main;
   let elementdescription = document.querySelector("#description");
-  elementdescription.innerHTML = `${description}`;
-  let feels = Math.round(response.data.main.feels_like);
   let elementFeels = document.querySelector("#feels");
-  elementFeels.innerHTML = `${feels}`;
-  let wind = Math.round(response.data.wind.speed);
   let elementWind = document.querySelector("#windSpeed");
-  elementWind.innerHTML = `${wind}`;
-  let humidity = response.data.main.humidity;
   let elementHumidity = document.querySelector("#humidity");
-  elementHumidity.innerHTML = `${humidity}`;
+
+  city.innerHTML = response.data.name;
+  country.innerHTML = response.data.sys.country;
+  elementTemp.innerHTML = Math.round(response.data.main.temp);
+  elementdescription.innerHTML = response.data.weather[0].main;
+  elementFeels.innerHTML = Math.round(response.data.main.feels_like);
+  elementWind.innerHTML = Math.round(response.data.wind.speed);
+  elementHumidity.innerHTML = response.data.main.humidity;
+
   let currentTime = new Date();
   let timeElement = document.querySelector("#currentTime");
   timeElement.innerHTML = showTime(currentTime);
@@ -93,4 +96,4 @@ let inputCity = document.querySelector("#searchBtn");
 inputCity.addEventListener("submit", handleSomthing);
 let current = document.querySelector("#currentBtn");
 current.addEventListener("click", showCurrent);
-searchCity("New york");
+searchCity("Tehran");
