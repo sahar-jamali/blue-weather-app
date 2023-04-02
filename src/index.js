@@ -52,6 +52,8 @@ function showTempature(response) {
   let elementFeels = document.querySelector("#feels");
   let elementWind = document.querySelector("#windSpeed");
   let elementHumidity = document.querySelector("#humidity");
+  let iconElement = document.querySelector("#weatherIcon");
+  console.log(iconElement);
 
   city.innerHTML = response.data.name;
   country.innerHTML = response.data.sys.country;
@@ -60,6 +62,11 @@ function showTempature(response) {
   elementFeels.innerHTML = Math.round(response.data.main.feels_like);
   elementWind.innerHTML = Math.round(response.data.wind.speed);
   elementHumidity.innerHTML = response.data.main.humidity;
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", "response.data.weather[0].main");
 
   let currentTime = new Date();
   let timeElement = document.querySelector("#currentTime");
