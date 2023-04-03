@@ -63,7 +63,7 @@ h1 {
   padding: 15px;
   border-radius: 10px;
   max-width: 600px;
-  margin: 120px auto;
+  margin: 70px auto;
   margin-bottom: 5px;
   text-align: center;
 }
@@ -111,9 +111,9 @@ h1 {
 }
 .coder {
   max-width: 600px;
-  margin: 120px auto;
   margin-bottom: 5px;
   margin-top: 5px;
+  margin-left: 0px;
   text-align: left;
   font-size: 14px;
 }
@@ -132,4 +132,28 @@ h1 {
 .units .notActive {
   cursor: default;
   text-decoration: none;
+}
+.Daily {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 28px;
+}
+.weatherForcast {
+  background-color: #153558;
+  border: 1px solid #dadde1;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+.weatherForcastDate {
+  font-size: 14px;
+}
+.max {
+  font-size: 24px;
+}
+.min {
+  font-size: 16px;
 }
