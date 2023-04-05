@@ -119,6 +119,32 @@ function changeFarToCel(event) {
   let elementTemp = document.querySelector("#show-temp");
   elementTemp.innerHTML = Math.round(celTemp);
 }
+
+function displayForecast() {
+  let forcastElement = document.querySelector("#forcast");
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forcastHTML = `<div class=row>`;
+  days.forEach(function (day) {
+    forcastHTML =
+      forcastHTML +
+      `<div class="col-3 forcastSection">
+            <div class="weatherForcastDate">${day}</div>
+            <img
+              src="https://openweathermap.org/img/wn/02d@2x.png"
+              alt=""
+              width="40"
+            />
+            <div class="weatherForcastTemparture">
+              <span class="max">18°</span> <span class="min">12°</span>
+              <div class="weatherForcastDescription">Suny</div>
+            </div>
+          </div>`;
+  });
+  forcastHTML = forcastHTML + `</div>`;
+  forcastElement.innerHTML = forcastHTML;
+  console.log(forcastHTML);
+}
+
 let celTemp = null;
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
@@ -129,3 +155,4 @@ farDegree.addEventListener("click", changeCelToFar);
 let celDegree = document.querySelector("#celsius");
 celDegree.addEventListener("click", changeFarToCel);
 searchCity("Tehran");
+displayForecast();

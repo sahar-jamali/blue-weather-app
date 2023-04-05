@@ -24,7 +24,7 @@ h1 {
   top: 0;
   position: fixed;
 }
-.forcast {
+.title {
   position: absolute;
   margin: 7px 65px;
   font-size: 23px;
@@ -140,7 +140,7 @@ h1 {
   line-height: 28px;
 }
 .weatherForcast {
-  background-color: #153558;
+  background-color: #102943;
   border: 1px solid #dadde1;
   padding: 15px;
   border-radius: 10px;
@@ -156,4 +156,7 @@ h1 {
 }
 .min {
   font-size: 16px;
+}
+.forcastSection {
+  width: 16.66%;
 }
