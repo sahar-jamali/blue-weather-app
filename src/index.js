@@ -43,6 +43,12 @@ function showDate(date) {
   let year = date.getFullYear();
   return `${day} ${month} ${year}`;
 }
+//showForcast
+function getForcast(coords) {
+  let apiKey = "20de7f3t60db8ob5dfafff8e7d436b82";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coords.lon}&lat=${coords.lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 //show temprature of city
 function showTempature(response) {
   let city = document.querySelector("#cityName");
@@ -75,6 +81,8 @@ function showTempature(response) {
   dayElement.innerHTML = showDay(currentTime);
   let dateElement = document.querySelector("#currentDate");
   dateElement.innerHTML = showDate(currentTime);
+
+  getForcast(response.data.coord);
 }
 //Add a search engine, when searching for a city,
 function searchCity(city) {
@@ -142,7 +150,6 @@ function displayForecast() {
   });
   forcastHTML = forcastHTML + `</div>`;
   forcastElement.innerHTML = forcastHTML;
-  console.log(forcastHTML);
 }
 
 let celTemp = null;
@@ -155,4 +162,3 @@ farDegree.addEventListener("click", changeCelToFar);
 let celDegree = document.querySelector("#celsius");
 celDegree.addEventListener("click", changeFarToCel);
 searchCity("Tehran");
-displayForecast();
