@@ -44,6 +44,48 @@ function showDate(date) {
   return `${day} ${month} ${year}`;
 }
 //showForcast
+function formatDay(timestemp) {
+  let date = new Date(timestemp * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forcastElement = document.querySelector("#forcast");
+  let forecast = response.data.daily;
+  console.log(forecast);
+  let forcastHTML = `<div class=row>`;
+  forecast.forEach(function (forcastDay, index) {
+    if (index < 6) {
+      forcastHTML =
+        forcastHTML +
+        `<div class="col-3 forcastSection">
+            <div class="weatherForcastDate">${formatDay(forcastDay.time)}</div>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forcastDay.condition.icon
+              }.png"
+              alt=""
+              width="40"
+            />
+            <div class="weatherForcastTemparture">
+              <span class="max">${Math.round(
+                forcastDay.temperature.maximum
+              )}°</span> <span class="min">${Math.round(
+          forcastDay.temperature.minimum
+        )}°</span>
+              <div class="weatherForcastDescription">${
+                forcastDay.condition.description
+              }</div>
+            </div>
+          </div>`;
+    }
+  });
+  forcastHTML = forcastHTML + `</div>`;
+  forcastElement.innerHTML = forcastHTML;
+}
+
 function getForcast(coords) {
   let apiKey = "20de7f3t60db8ob5dfafff8e7d436b82";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coords.lon}&lat=${coords.lat}&key=${apiKey}&units=metric`;
@@ -126,30 +168,6 @@ function changeFarToCel(event) {
   celDegree.classList.remove("notActive");
   let elementTemp = document.querySelector("#show-temp");
   elementTemp.innerHTML = Math.round(celTemp);
-}
-
-function displayForecast() {
-  let forcastElement = document.querySelector("#forcast");
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let forcastHTML = `<div class=row>`;
-  days.forEach(function (day) {
-    forcastHTML =
-      forcastHTML +
-      `<div class="col-3 forcastSection">
-            <div class="weatherForcastDate">${day}</div>
-            <img
-              src="https://openweathermap.org/img/wn/02d@2x.png"
-              alt=""
-              width="40"
-            />
-            <div class="weatherForcastTemparture">
-              <span class="max">18°</span> <span class="min">12°</span>
-              <div class="weatherForcastDescription">Suny</div>
-            </div>
-          </div>`;
-  });
-  forcastHTML = forcastHTML + `</div>`;
-  forcastElement.innerHTML = forcastHTML;
 }
 
 let celTemp = null;
