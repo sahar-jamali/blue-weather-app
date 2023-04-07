@@ -54,7 +54,6 @@ function formatDay(timestemp) {
 function displayForecast(response) {
   let forcastElement = document.querySelector("#forcast");
   let forecast = response.data.daily;
-  console.log(forecast);
   let forcastHTML = `<div class=row>`;
   forecast.forEach(function (forcastDay, index) {
     if (index < 6) {
@@ -86,9 +85,9 @@ function displayForecast(response) {
   forcastElement.innerHTML = forcastHTML;
 }
 
-function getForcast(coords) {
+function getForcast(city) {
   let apiKey = "20de7f3t60db8ob5dfafff8e7d436b82";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coords.lon}&lat=${coords.lat}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 //show temprature of city
@@ -101,20 +100,19 @@ function showTempature(response) {
   let elementWind = document.querySelector("#windSpeed");
   let elementHumidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#weatherIcon");
-
-  celTemp = response.data.main.temp;
-  city.innerHTML = response.data.name;
-  country.innerHTML = response.data.sys.country;
+  celTemp = response.data.temperature.current;
+  city.innerHTML = response.data.city;
+  country.innerHTML = response.data.country;
   elementTemp.innerHTML = Math.round(celTemp);
-  elementdescription.innerHTML = response.data.weather[0].main;
-  elementFeels.innerHTML = Math.round(response.data.main.feels_like);
+  elementdescription.innerHTML = response.data.condition.description;
+  elementFeels.innerHTML = Math.round(response.data.temperature.feels_like);
   elementWind.innerHTML = Math.round(response.data.wind.speed);
-  elementHumidity.innerHTML = response.data.main.humidity;
+  elementHumidity.innerHTML = response.data.temperature.humidity;
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  iconElement.setAttribute("alt", "response.data.weather[0].main");
+  iconElement.setAttribute("alt", "response.data.condition.icon");
 
   let currentTime = new Date();
   let timeElement = document.querySelector("#currentTime");
@@ -124,12 +122,12 @@ function showTempature(response) {
   let dateElement = document.querySelector("#currentDate");
   dateElement.innerHTML = showDate(currentTime);
 
-  getForcast(response.data.coord);
+  getForcast(response.data.city);
 }
 //Add a search engine, when searching for a city,
 function searchCity(city) {
-  let apiKey = "8cd9be374c7c96c39a9fe73f4bf2f055";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "20de7f3t60db8ob5dfafff8e7d436b82";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTempature);
 }
 function handleSubmit(event) {
@@ -150,6 +148,11 @@ function showCurrent(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 //cel to far and far to cel
+function convertForecastToFar(city) {
+  let apiKey = "20de7f3t60db8ob5dfafff8e7d436b82";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
+}
 function changeCelToFar(event) {
   event.preventDefault();
   celDegree.classList.remove("active");
@@ -159,6 +162,8 @@ function changeCelToFar(event) {
   let elementTemp = document.querySelector("#show-temp");
   let farTemp = (celTemp * 9) / 5 + 32;
   elementTemp.innerHTML = Math.round(farTemp);
+  let currentCity = document.getElementById("cityName").innerHTML;
+  convertForecastToFar(currentCity);
 }
 function changeFarToCel(event) {
   event.preventDefault();
@@ -168,6 +173,8 @@ function changeFarToCel(event) {
   celDegree.classList.remove("notActive");
   let elementTemp = document.querySelector("#show-temp");
   elementTemp.innerHTML = Math.round(celTemp);
+  let currentCity = document.getElementById("cityName").innerHTML;
+  getForcast(currentCity);
 }
 
 let celTemp = null;
@@ -175,8 +182,8 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 let current = document.querySelector("#currentBtn");
 current.addEventListener("click", showCurrent);
+searchCity("paris");
 let farDegree = document.querySelector("#farenheit");
 farDegree.addEventListener("click", changeCelToFar);
 let celDegree = document.querySelector("#celsius");
 celDegree.addEventListener("click", changeFarToCel);
-searchCity("Tehran");
