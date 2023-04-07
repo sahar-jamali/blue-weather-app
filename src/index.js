@@ -182,7 +182,7 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 let current = document.querySelector("#currentBtn");
 current.addEventListener("click", showCurrent);
-searchCity("paris");
+searchCity("Berlin");
 let farDegree = document.querySelector("#farenheit");
 farDegree.addEventListener("click", changeCelToFar);
 let celDegree = document.querySelector("#celsius");
