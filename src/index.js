@@ -112,7 +112,7 @@ function showTempature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  iconElement.setAttribute("alt", "response.data.condition.icon");
+  iconElement.setAttribute("alt", response.data.condition.icon);
 
   let currentTime = new Date();
   let timeElement = document.querySelector("#currentTime");
